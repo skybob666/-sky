@@ -1,150 +1,174 @@
 (function () {
   "use strict";
-
   const data = window.CAO_DATA;
-  const plantGrid = document.querySelector("#plant-grid");
-  const ingredientGrid = document.querySelector("#ingredient-grid");
-  const sequenceBand = document.querySelector("#sequence-band");
-  const detailBackdrop = document.querySelector("#detail-backdrop");
-  const detailPanel = document.querySelector("#detail-panel");
-  const detailClose = document.querySelector("#detail-close");
-  const relatedButton = document.querySelector("#detail-related-button");
-  const navLinks = Array.from(document.querySelectorAll(".nav-link"));
-  let lastTrigger = null;
-  let activeFilter = "all";
-
-  const plantById = Object.fromEntries(data.plants.map((plant) => [plant.id, plant]));
-  const ingredientById = Object.fromEntries(data.ingredients.map((item) => [item.id, item]));
-
-  function plantIcon(kind) {
-    const variants = {
-      stem: '<path class="mini-stem" d="M55 81 C51 64 55 45 64 22"/><path class="mini-leaf" d="M59 55 C42 41 28 42 21 50 C32 62 46 64 59 55Z"/><path class="mini-leaf" d="M56 70 C39 65 26 70 24 80 C38 85 50 81 56 70Z"/><circle class="mini-flower" cx="66" cy="20" r="10"/>',
-      flower: '<path class="mini-stem" d="M55 82 C54 60 57 44 65 28"/><path class="mini-leaf" d="M56 61 C40 53 29 57 26 66 C38 72 49 70 56 61Z"/><circle class="mini-flower" cx="68" cy="25" r="15"/><path class="mini-flower-line" d="M68 11 V39 M54 25 H82 M58 15 L78 35 M78 15 L58 35"/>',
-      leaf: '<path class="mini-stem" d="M54 82 C51 59 48 41 41 24"/><path class="mini-leaf" d="M49 62 C28 56 16 44 17 34 C33 33 46 43 49 62Z"/><path class="mini-leaf" d="M48 47 C57 30 69 24 79 27 C75 43 63 50 48 47Z"/><path class="mini-leaf" d="M53 75 C69 61 80 60 88 65 C78 77 66 81 53 75Z"/>'
-    };
-    return `<svg class="plant-icon" viewBox="0 0 110 100" aria-hidden="true">${variants[kind] || variants.stem}</svg>`;
-  }
-
-  function renderPlants() {
-    plantGrid.innerHTML = data.plants.map((plant) => `
-      <button class="plant-card" type="button" data-plant-id="${plant.id}" aria-label="查看${plant.name}植物卡">
-        <span class="plant-card-top"><span>${plant.code}</span><span>VIEW →</span></span>
-        <span class="plant-art">${plantIcon(plant.specimen)}</span>
-        <span class="plant-card-copy"><em>${plant.latin}</em><strong>${plant.name}</strong><span>${plant.family}</span></span>
-        <span class="plant-card-foot"><span>${plant.part}</span><b>查看成分 →</b></span>
-      </button>
-    `).join("");
-  }
-
-  function renderIngredients() {
-    const items = activeFilter === "all" ? data.ingredients : data.ingredients.filter((item) => item.type === activeFilter);
-    ingredientGrid.innerHTML = items.map((item) => `
-      <button class="ingredient-card ${item.type === "plant" ? "is-plant" : ""}" type="button" data-ingredient-id="${item.id}" aria-label="查看${item.name}详情">
-        <span class="ingredient-index">${String(item.position).padStart(2, "0")}</span>
-        <span class="ingredient-main"><strong>${item.name}</strong><em>${item.english}</em></span>
-        <span class="ingredient-tag">${item.alias}</span>
-        <span class="ingredient-arrow" aria-hidden="true">↗</span>
-      </button>
-    `).join("");
-  }
-
-  function renderSequence() {
-    sequenceBand.innerHTML = data.ingredients.slice().sort((a, b) => a.position - b.position).map((item) => `
-      <button class="sequence-node ${item.type === "plant" ? "is-plant" : ""}" type="button" data-ingredient-id="${item.id}" aria-label="第${item.position}项：${item.name}">
-        <span class="sequence-dot"></span><span class="sequence-number">${String(item.position).padStart(2, "0")}</span><span class="sequence-name">${item.name}</span>
-      </button>
-    `).join("");
-  }
-
-  function setText(selector, value) {
-    const element = document.querySelector(selector);
-    if (element) element.textContent = value || "—";
-  }
-
-  function openIngredient(item, trigger) {
-    lastTrigger = trigger || null;
-    const plant = item.plantId ? plantById[item.plantId] : null;
-    setText("#detail-kicker", item.type === "plant" ? "PLANT EXTRACT / 植物提取物" : "INGREDIENT NOTE / 成分解码");
-    setText("#detail-status", "示例资料 · 待核验");
-    setText("#detail-title", item.name);
-    setText("#detail-subtitle", item.english + (item.alias ? ` · ${item.alias}` : ""));
-    setText("#detail-role", item.role);
-    setText("#detail-origin", item.origin);
-    setText("#detail-position", `示例配方第 ${item.position} 项 / 共 16 项`);
-    setText("#detail-plant", plant ? `${plant.name} · ${plant.latin}` : "暂无植物关联");
-    setText("#detail-plain", item.plain);
-    setText("#detail-evidence-copy", item.evidence);
-    detailBackdrop.hidden = false;
+  const dialog = document.querySelector("#detail-dialog");
+  if (!data || !dialog || typeof dialog.showModal !== "function") return;
+  const ingredients = new Map(data.ingredients.map(i => [i.id, i]));
+  const plants = new Map(data.plants.map(p => [p.id, p]));
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
+  let trigger = null;
+  let currentItem = null;
+  let returnHash = "#ingredients";
+  let routePushed = false;
+  const text = (id, value) => { document.getElementById(id).textContent = value; };
+  function renderItem(item) {
+    if (!item) return;
+    currentItem = item;
+    const plant = plants.get(item.plantId);
+    const source = data.sources[item.source || "formula"];
+    text("detail-kicker", item.featured ? "INGREDIENT NOTE / 成分解码" : "FORMULA RECORD / 配方记录");
+    text("detail-title", item.name);
+    text("detail-english", item.english);
+    text("detail-position", "第 " + item.position + " 项 / 共 16 项");
+    text("detail-role", item.role || "配方记录 · 名称与序位");
+    text("detail-plain", item.plain || "这项成分列在老师提供的配方记录第 " + item.position + " 项。本馆保留其名称与顺序，暂不对它展开功能解读。");
+    text("detail-evidence", item.evidence || "依据为老师提供的配方记录。序位不代表具体浓度；本页没有据此推导产品功效。");
+    const sourceLink = document.getElementById("detail-source");
+    sourceLink.href = source.url;
+    sourceLink.textContent = source.label + " ↗";
+    const image = document.getElementById("detail-image");
+    image.hidden = !plant;
+    if (plant) { image.src = plant.image; image.alt = plant.name + "品牌插画"; }
+    document.getElementById("detail-plant").hidden = !plant;
+    dialog.querySelector(".evidence-details").open = false;
+    dialog.querySelector(".detail-scroll").scrollTop = 0;
+    if (!dialog.open) dialog.showModal();
     document.body.classList.add("modal-open");
-    detailPanel.focus();
-    updateHash(`ingredient=${item.id}`);
   }
-
-  function openPlant(plant, trigger) {
-    const item = ingredientById[plant.ingredientId];
-    if (item) openIngredient(item, trigger);
+  function openItem(item, sourceElement, route) {
+    if (!item) return;
+    trigger = sourceElement || null;
+    if (!dialog.open) {
+      returnHash = /^(#ingredient=|#plant=|#note-)/.test(location.hash) ? "#ingredients" : location.hash || "#ingredients";
+      routePushed = !!route;
+      if (route) history.pushState({ caoDetail: true }, "", route);
+    }
+    renderItem(item);
   }
-
-  function closeDetail(updateUrl) {
-    detailBackdrop.hidden = true;
+  function hideDialog() {
+    if (dialog.open) dialog.close();
     document.body.classList.remove("modal-open");
-    if (updateUrl) clearHash();
-    if (lastTrigger) lastTrigger.focus();
-    lastTrigger = null;
+    if (trigger && trigger.isConnected) trigger.focus({ preventScroll: true });
+    trigger = null;
   }
-
-  function updateHash(value) {
-    history.replaceState(null, "", `#${value}`);
+  function requestClose() {
+    hideDialog();
+    if (routePushed) { routePushed = false; history.back(); }
+    else history.replaceState(null, "", location.pathname + location.search + returnHash);
   }
-
-  function clearHash() {
-    history.replaceState(null, "", window.location.pathname + window.location.search);
+  function route() {
+    const hash = decodeURIComponent(location.hash);
+    const match = hash.match(/^#(ingredient|plant)=([a-z0-9-]+)$/);
+    const note = hash.match(/^#note-([a-z0-9-]+)$/);
+    let item = null;
+    if (match) item = match[1] === "ingredient" ? ingredients.get(match[2]) : ingredients.get(plants.get(match[2])?.ingredientId);
+    if (note) item = ingredients.get(note[1]);
+    if (item) openItem(item, null, null);
+    else { hideDialog(); routePushed = false; }
   }
-
-  function openFromHash() {
-    const hash = window.location.hash.replace(/^#/, "");
-    const match = hash.match(/^(ingredient|plant)=([^&]+)/);
-    if (!match) return;
-    if (match[1] === "ingredient" && ingredientById[match[2]]) openIngredient(ingredientById[match[2]]);
-    if (match[1] === "plant" && plantById[match[2]]) openPlant(plantById[match[2]]);
-  }
-
-  document.addEventListener("click", (event) => {
-    const ingredientTrigger = event.target.closest("[data-ingredient-id]");
-    const plantTrigger = event.target.closest("[data-plant-id]");
-    const filterTrigger = event.target.closest("[data-filter]");
-    if (ingredientTrigger) openIngredient(ingredientById[ingredientTrigger.dataset.ingredientId], ingredientTrigger);
-    if (plantTrigger) openPlant(plantById[plantTrigger.dataset.plantId], plantTrigger);
-    if (filterTrigger) {
-      activeFilter = filterTrigger.dataset.filter;
-      document.querySelectorAll(".filter-button").forEach((button) => button.classList.toggle("is-active", button === filterTrigger));
-      renderIngredients();
+  document.addEventListener("click", event => {
+    const ingredient = event.target.closest("[data-ingredient-id]");
+    const plantLink = event.target.closest("[data-plant-id]");
+    if (ingredient || plantLink) {
+      const item = ingredient ? ingredients.get(ingredient.dataset.ingredientId) : ingredients.get(plants.get(plantLink.dataset.plantId)?.ingredientId);
+      if (!item) return;
+      event.preventDefault();
+      openItem(item, ingredient || plantLink, "#ingredient=" + item.id);
+      return;
+    }
+    const filter = event.target.closest("[data-filter]");
+    if (filter) {
+      const type = filter.dataset.filter;
+      let count = 0;
+      document.querySelectorAll(".ingredient-card").forEach(card => {
+        card.hidden = type !== "all" && card.dataset.type !== type;
+        if (!card.hidden) count++;
+      });
+      document.querySelectorAll("[data-filter]").forEach(button => {
+        const active = button === filter;
+        button.classList.toggle("is-active", active);
+        button.setAttribute("aria-pressed", String(active));
+      });
+      text("filter-count", count + " 项重点解码");
     }
   });
-
-  detailClose.addEventListener("click", () => closeDetail(true));
-  relatedButton.addEventListener("click", () => {
-    closeDetail(true);
-    document.querySelector("#explore").scrollIntoView({ behavior: "smooth" });
+  dialog.querySelector(".detail-close").addEventListener("click", requestClose);
+  dialog.addEventListener("cancel", event => { event.preventDefault(); requestClose(); });
+  dialog.addEventListener("click", event => {
+    if (event.target !== dialog) return;
+    const rect = dialog.getBoundingClientRect();
+    if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) requestClose();
   });
-  detailBackdrop.addEventListener("click", (event) => {
-    if (event.target === detailBackdrop) closeDetail(true);
+  dialog.addEventListener("keydown", event => {
+    if (event.key !== "Tab") return;
+    const focusable = [...dialog.querySelectorAll('button:not([hidden]), a[href], summary')].filter(el => el.getClientRects().length);
+    const first = focusable[0], last = focusable.at(-1);
+    if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+    if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
   });
-  document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape" && !detailBackdrop.hidden) closeDetail(true);
+  function jumpTo(targetId) {
+    routePushed = false;
+    trigger = null;
+    hideDialog();
+    history.replaceState(null, "", "#" + targetId);
+    const target = document.getElementById(targetId);
+    if (target) {
+      target.scrollIntoView({ behavior: reduced.matches ? "instant" : "smooth", block: "center" });
+      target.focus({ preventScroll: true });
+    }
+  }
+  document.getElementById("detail-formula").addEventListener("click", () => {
+    const item = currentItem;
+    document.querySelectorAll(".sequence-node").forEach(node => node.classList.toggle("is-target", node.id === "formula-entry-" + item.id));
+    jumpTo("formula-entry-" + item.id);
   });
-  window.addEventListener("hashchange", openFromHash);
-
-  const sectionObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (!entry.isIntersecting) return;
-      navLinks.forEach((link) => link.classList.toggle("is-active", link.getAttribute("href") === `#${entry.target.dataset.section}`));
+  document.getElementById("detail-plant").addEventListener("click", () => {
+    const plant = plants.get(currentItem?.plantId);
+    if (plant) {
+      const link = document.querySelector('[data-plant-id="' + plant.id + '"]');
+      jumpTo("plants");
+      link.focus({ preventScroll: true });
+    }
+  });
+  const menu = document.querySelector(".menu-toggle");
+  const nav = document.querySelector(".main-nav");
+  function closeMenu() { nav.classList.remove("is-open"); menu.setAttribute("aria-expanded", "false"); menu.setAttribute("aria-label", "展开导航"); }
+  menu.addEventListener("click", () => {
+    const isOpen = menu.getAttribute("aria-expanded") !== "true";
+    menu.setAttribute("aria-expanded", String(isOpen));
+    menu.setAttribute("aria-label", isOpen ? "收起导航" : "展开导航");
+    nav.classList.toggle("is-open", isOpen);
+  });
+  nav.addEventListener("click", event => { if (event.target.closest("a")) closeMenu(); });
+  document.addEventListener("keydown", event => { if (event.key === "Escape") closeMenu(); });
+  document.addEventListener("click", event => { if (!event.target.closest(".site-header")) closeMenu(); });
+  const navLinks = [...document.querySelectorAll(".nav-link")];
+  const sections = [...document.querySelectorAll("[data-section]")];
+  let pendingScroll = false;
+  function updateNav() {
+    const marker = window.scrollY + Math.min(window.innerHeight * .35, 240);
+    let active = sections[0];
+    for (const section of sections) if (section.offsetTop <= marker) active = section;
+    navLinks.forEach(link => {
+      const selected = link.hash === "#" + active.id;
+      link.classList.toggle("is-active", selected);
+      if (selected) link.setAttribute("aria-current", "location");
+      else link.removeAttribute("aria-current");
     });
-  }, { rootMargin: "-35% 0px -55% 0px", threshold: 0 });
-  document.querySelectorAll("[data-section]").forEach((section) => sectionObserver.observe(section));
-
-  renderPlants();
-  renderIngredients();
-  renderSequence();
-  openFromHash();
+    pendingScroll = false;
+  }
+  window.addEventListener("scroll", () => {
+    if (!pendingScroll) { pendingScroll = true; requestAnimationFrame(updateNav); }
+  }, { passive: true });
+  window.addEventListener("resize", () => { if (innerWidth > 600) closeMenu(); updateNav(); });
+  window.addEventListener("hashchange", route);
+  // 手机抽屉只在顶部手势柄上响应下滑，避免干扰面板内阅读。
+  const handle = dialog.querySelector(".drawer-handle");
+  let startY = null;
+  handle.addEventListener("pointerdown", event => { startY = event.clientY; handle.setPointerCapture(event.pointerId); });
+  handle.addEventListener("pointerup", event => { if (startY !== null && event.clientY - startY > 55) requestClose(); startY = null; });
+  handle.addEventListener("pointercancel", () => { startY = null; });
+  document.documentElement.classList.add("js");
+  updateNav();
+  route();
 })();

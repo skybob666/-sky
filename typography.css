@@ -1,0 +1,225 @@
+/* v1.3 — consistent, locally hosted Chinese sans-serif typography. */
+@font-face {
+  font-family: "CFH Sans";
+  src: url("assets/fonts/cfh-sans-sc.woff") format("woff");
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
+:root {
+  --sans: "CFH Sans", "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
+  --display: var(--sans);
+}
+body {font-family:var(--sans);font-size:16px;line-height:1.9;font-weight:400;letter-spacing:.01em;}
+h1,h2,h3,h4,button,a {font-synthesis:none;}
+.hero h1,.section-head h2,.product-copy>h3,.plant-copy h3,.formula-title h3,.bridge-copy h3,.source-statement h3,.closing>p,.detail-dialog h2,.intro-inner>p {
+  font-family:var(--display);font-style:normal;font-weight:400;letter-spacing:.02em;
+}
+.hero h1 {font-size:clamp(46px,4.2vw,60px);line-height:1.45;margin-top:26px;letter-spacing:.025em;}
+.hero-lead {font-size:17px;line-height:1.95;margin-top:28px;color:#586453;}
+.hero-actions {margin-top:32px;gap:26px;}
+.eyebrow,.small-label,.brand-sub,.edition,.section-caption>span:first-child {font-family:var(--sans);font-style:normal;font-size:11px;font-weight:500;letter-spacing:.12em;}
+.brand-name {font-size:30px;letter-spacing:5px;}
+.brand-sub {font-size:9px;letter-spacing:.15em;}
+.nav-link,.header-cta {font-size:14px;}
+.button,.text-link {font-size:15px;font-weight:450;letter-spacing:.025em;}
+.button {padding:16px 24px;}
+.hero-footnote p {font-size:13px;}
+.hero-footnote small {font-size:11px;}
+.hero-bottom {font-size:11px;}
+.hero-bottom>a {font-size:12px;}
+.edition {font-size:10px;}
+.photo-stamp {font-family:var(--display);font-size:15px;line-height:1.55;}
+.hero-visual figcaption {font-size:11px;}
+.hero-visual figcaption b {font-size:14px;font-weight:450;letter-spacing:.04em;}
+.photo-volume {font-family:var(--sans);font-size:34px;font-weight:300;}
+.intro-inner>p {font-size:20px;line-height:1.75;}
+.intro-inner strong {font-family:var(--sans);font-weight:300;font-size:43px;letter-spacing:-.03em;}
+.intro-inner span {font-size:14px;}
+.intro-inner span small {font-size:12px;}
+.section-head h2 {font-size:42px;line-height:1.5;margin-top:18px;}
+.section-intro {font-size:15px;line-height:1.95;max-width:430px;}
+.product-copy>h3 {font-size:38px;line-height:1.5;margin-top:16px;}
+.english-name {font-family:var(--sans);font-style:normal;font-size:13px;letter-spacing:.04em;line-height:1.8;}
+.product-description {font-size:15px;line-height:1.9;}
+.product-main figcaption {font-size:13px;letter-spacing:.035em;padding:16px 22px 20px;color:#5b6656;}
+.product-layout {gap:76px;}
+.size-options {font-size:14px;gap:24px;}
+.size-options b {font-family:var(--sans);font-size:26px;font-weight:350;}
+.usage>.small-label {font-size:13px;letter-spacing:.04em;}
+.usage>.small-label span {font-size:11px;}
+.usage li {margin:18px 0;}
+.usage li>b {font-family:var(--sans);font-style:normal;font-size:14px;font-weight:400;}
+.usage li strong {font-size:15px;font-weight:500;}
+.usage li p {font-size:13px;line-height:1.9;}
+.bridge-index {font-family:var(--display);font-size:17px;}
+.bridge-index span {font-size:10px;}
+.bridge-copy>p {font-size:13px;}
+.bridge-copy h3 {font-size:26px;line-height:1.6;}
+.bridge-copy .bridge-note {font-size:13px;}
+.plant-top {font-size:11px;letter-spacing:.06em;}
+.plant-copy {padding:14px 26px 28px;}
+.plant-copy em {font-family:var(--sans);font-style:normal;font-size:12px;letter-spacing:.03em;}
+.plant-copy h3 {font-size:27px;line-height:1.5;margin:10px 0 14px;font-weight:450;}
+.plant-copy p {font-size:14px;line-height:1.9;min-height:106px;}
+.plant-foot {font-size:12px;padding:18px 22px;}
+.plant-foot b {font-weight:500;}
+.section-caption {font-size:12px;line-height:1.8;}
+.section-caption>span:first-child {font-size:10px;}
+.filter-button {font-size:14px;padding:10px 16px;}
+#filter-count {font-size:12px;}
+.ingredient-card summary {min-height:140px;gap:22px;}
+.ingredient-index {font-family:var(--sans);font-style:normal;font-size:30px;font-weight:300;min-width:44px;}
+.ingredient-copy strong {font-family:var(--sans);font-size:22px;font-weight:450;line-height:1.65;}
+.ingredient-copy em {font-family:var(--sans);font-style:normal;font-size:12px;line-height:1.8;}
+.ingredient-alias {font-size:11px;letter-spacing:.03em;}
+.reading-note {font-size:12px;line-height:1.9;}
+.formula-title h3 {font-size:27px;line-height:1.6;}
+.formula-key,.formula-tip {font-size:12px;}
+.sequence-node {font-size:12px;min-height:120px;}
+.sequence-number {font-family:var(--sans);font-style:normal;font-size:22px;font-weight:300;}
+.sequence-name {line-height:1.8;}
+.full-formula>summary {font-size:15px;}
+.full-formula>summary small {font-size:12px;}
+.full-formula-content {font-size:14px;line-height:2.1;}
+.full-formula-content h4 {font-size:15px;font-weight:500;}
+.full-formula-content .formula-source {font-size:12px;}
+.source-statement h3 {font-size:30px;line-height:1.7;}
+.source-statement>p {font-size:14px;line-height:1.95;max-width:320px;}
+.source-date {font-size:12px;}
+.source-list summary {font-size:16px;min-height:82px;}
+.source-list summary b {font-family:var(--sans);font-size:11px;}
+.source-details {font-size:14px;line-height:2;}
+.source-details a {line-height:2.2;}
+.closing>p {font-size:28px;line-height:1.65;}
+.footer-inner {font-size:12px;}
+.footer-inner p {font-size:11px;}
+.footer-brand {font-size:24px;}
+.footer-brand>span {font-size:11px;}
+.detail-dialog h2 {font-size:32px;line-height:1.55;}
+.detail-english {font-family:var(--sans);font-style:normal;font-size:14px;line-height:1.8;}
+.detail-meta span {font-size:12px;}
+.detail-meta strong {font-size:14px;}
+.detail-label {font-size:13px;}
+.detail-plain {font-size:17px;line-height:1.95;}
+.evidence-details {font-size:14px;}
+.evidence-details p {font-size:14px;line-height:1.95;}
+.evidence-details a {font-size:12px;}
+.preview-badge {font-size:13px;font-weight:450;}
+@media(max-width:1100px) {
+  .hero h1 {font-size:48px;}
+  .hero-lead {font-size:16px;}
+  .product-layout {gap:42px;}
+  .section-head h2 {font-size:38px;}
+  .product-copy>h3 {font-size:34px;}
+  .plant-foot {padding-inline:16px;font-size:11px;}
+  .plant-copy {padding-inline:20px;}
+  .plant-copy p {font-size:13px;min-height:125px;}
+  .source-layout {gap:50px;}
+}
+@media(max-width:800px) {
+  .hero h1 {font-size:36px;letter-spacing:.01em;}
+  .hero .eyebrow {font-size:10px;}
+  .hero-lead {font-size:14px;line-height:1.95;}
+  .hero .button,.hero .text-link {font-size:13px;}
+  .hero .button {padding:14px 17px;}
+  .hero-footnote p {font-size:12px;}
+  .nav-link {font-size:13px;}
+  .main-nav {gap:16px;}
+  .section-head h2 {font-size:32px;}
+  .section-intro {font-size:14px;line-height:1.85;}
+  .product-copy>h3 {font-size:30px;}
+  .product-description {font-size:14px;}
+  .size-options {font-size:12px;}
+  .usage li p {font-size:12px;}
+  .usage li strong {font-size:14px;}
+  .plant-copy h3 {font-size:23px;}
+  .plant-copy p {font-size:13px;min-height:152px;}
+  .plant-top {font-size:10px;padding-inline:14px;}
+  .plant-copy em {font-size:11px;}
+  .intro-inner strong {font-size:34px;}
+  .intro-inner span {font-size:12px;}
+  .intro-inner span small {font-size:10px;white-space:normal;}
+  .ingredient-copy strong {font-size:19px;}
+  .ingredient-card summary {gap:14px;}
+  .ingredient-index {font-size:26px;min-width:34px;}
+  .source-statement h3 {font-size:26px;}
+  .source-list summary {font-size:14px;}
+  .source-details {font-size:13px;}
+  .closing>p {font-size:23px;}
+  .closing>.text-link {font-size:13px;}
+}
+@media(max-width:600px) {
+  body {font-size:16px;}
+  .brand-name {font-size:26px;}
+  .brand-sub {font-size:8px;}
+  .hero h1 {font-size:clamp(34px,9.8vw,44px);line-height:1.5;letter-spacing:.01em;}
+  .hero .eyebrow {font-size:10px;letter-spacing:.08em;}
+  .hero-lead {font-size:15px;line-height:1.95;margin-top:22px;}
+  .hero .button {font-size:14px;padding:15px 18px;}
+  .hero .text-link {font-size:13px;}
+  .hero-actions {gap:18px;flex-wrap:wrap;}
+  .hero-visual figcaption b {font-size:12px;}
+  .hero-visual figcaption {font-size:10px;}
+  .photo-volume {font-size:30px;}
+  .course-label {font-size:10px;}
+  .edition {font-size:9px;letter-spacing:.08em;}
+  .hero-bottom {row-gap:8px;}
+  .intro-inner>div {padding-left:12px;}
+  .intro-inner strong {font-size:32px;}
+  .intro-inner span {font-size:12px;}
+  .intro-inner span small {font-size:10px;line-height:1.7;}
+  .section-head h2 {font-size:30px;line-height:1.6;}
+  .section-intro {font-size:14px;line-height:1.9;}
+  .eyebrow {font-size:10px;}
+  .product-copy>h3 {font-size:32px;line-height:1.5;}
+  .english-name {font-size:12px;}
+  .product-description {font-size:15px;}
+  .product-main figcaption {font-size:12px;padding:15px 16px 18px;}
+  .size-options {font-size:13px;gap:20px;}
+  .size-options b {font-size:25px;}
+  .usage>.small-label {font-size:13px;}
+  .usage>.small-label span {font-size:10px;}
+  .usage li strong {font-size:15px;}
+  .usage li p {font-size:13px;}
+  .product-copy>.text-link {font-size:14px;}
+  .bridge-index {font-size:14px;}
+  .bridge-copy>p,.bridge-copy .bridge-note {font-size:12px;}
+  .bridge-copy h3 {font-size:22px;}
+  .plant-top {font-size:10px;padding:16px 22px;}
+  .plant-copy {padding:12px 24px 26px;}
+  .plant-copy h3 {font-size:27px;}
+  .plant-copy p {font-size:15px;min-height:0;line-height:1.9;}
+  .plant-copy em {font-size:12px;}
+  .plant-foot {font-size:12px;padding:18px 23px;}
+  .section-caption {font-size:12px;}
+  .section-caption>span:first-child {font-size:10px;}
+  .filter-button {font-size:13px;padding:10px 11px;}
+  #filter-count {font-size:11px;}
+  .ingredient-copy strong {font-size:21px;font-weight:450;}
+  .ingredient-copy em {font-size:12px;}
+  .ingredient-alias {font-size:11px;}
+  .ingredient-card summary {min-height:126px;gap:20px;}
+  .ingredient-index {font-size:28px;min-width:40px;}
+  .reading-note {font-size:12px;}
+  .formula-title h3 {font-size:23px;}
+  .formula-key,.formula-tip {font-size:12px;}
+  .sequence-node {font-size:11px;min-height:126px;}
+  .sequence-number {font-size:20px;}
+  .full-formula>summary {font-size:14px;}
+  .full-formula>summary small {font-size:11px;}
+  .full-formula-content {font-size:13px;}
+  .source-statement h3 {font-size:24px;}
+  .source-statement>p {font-size:14px;max-width:none;}
+  .source-date {font-size:11px;}
+  .source-list summary {font-size:14px;}
+  .source-details {font-size:13px;}
+  .closing>p {font-size:23px;}
+  .closing>.text-link {font-size:13px;}
+  .footer-inner p {font-size:10px;}
+  .detail-dialog h2 {font-size:27px;}
+  .detail-plain {font-size:16px;}
+  .detail-meta strong {font-size:13px;}
+  .detail-actions .button,.detail-actions .text-link {font-size:14px;}
+  .preview-badge {font-size:12px;}
+}

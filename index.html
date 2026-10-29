@@ -1,221 +1,133 @@
 <!doctype html>
 <html lang="zh-CN">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="robots" content="noindex,nofollow" />
-    <meta name="description" content="草肤荟·成分探索馆初版：以雅诗兰黛为示例的植物护肤品牌宣传网站交互原型。" />
-    <title>草肤荟 · 成分探索馆｜初版示例</title>
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <div class="demo-banner">
-      <span class="status-dot" aria-hidden="true"></span>
-      初版示例 · 雅诗兰黛仅用于课堂视觉与交互演示 · 非品牌官方运营网站
-    </div>
-
-    <header class="site-header" data-header>
-      <a class="brand-lockup" href="#top" aria-label="回到首页">
-        <span class="brand-mark" aria-hidden="true">草</span>
-        <span>
-          <strong>草肤荟</strong>
-          <small>成分探索馆 / SAMPLE 01</small>
-        </span>
-      </a>
-      <nav class="main-nav" aria-label="主导航">
-        <a class="nav-link is-active" href="#top">首页</a>
-        <a class="nav-link" href="#product">产品配方</a>
-        <a class="nav-link" href="#explore">植物与成分</a>
-        <a class="nav-link" href="#sources">方法与来源</a>
-        <a class="nav-link" href="#about">关于本作品</a>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="description" content="草肤荟·成分探索馆：从三种草本植物出发，认识植物草本御肤精华液，探索配方中的八项成分。">
+  <meta name="theme-color" content="#264b38">
+  <title>草肤荟 · 成分探索馆｜从植物，读懂配方</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/images/serum/front.webp" as="image">
+  <link rel="preload" href="assets/fonts/cfh-sans-sc.woff" as="font" type="font/woff" crossorigin>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="typography.css?v=1.3">
+  <script src="data.js" defer></script>
+  <script src="app.js?v=1.3" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳转到正文</a>
+  <header class="site-header">
+    <div class="header-inner wrap">
+      <a class="brand" href="#top" aria-label="草肤荟，回到首页"><span class="brand-name">草肤荟<span class="brand-seal" aria-hidden="true">草本</span></span><span class="brand-sub">CAOFUHUI · 成分探索馆</span></a>
+      <nav class="main-nav" id="main-nav" aria-label="主导航">
+        <a class="nav-link is-active" href="#top" aria-current="location">首页</a><a class="nav-link" href="#product">一瓶精华</a><a class="nav-link" href="#plants">植物图鉴</a><a class="nav-link" href="#ingredients">成分解码</a><a class="nav-link" href="#sources">资料与说明</a>
       </nav>
-      <a class="header-cta" href="#explore">开始探索 <span aria-hidden="true">↗</span></a>
-    </header>
-
-    <main id="top">
-      <section class="hero section-shell" data-section="top">
-        <div class="hero-copy">
-          <p class="eyebrow"><span>01</span> 植物护肤 · 成分档案</p>
-          <h1>先认识植物，<br /><em>再读懂成分。</em></h1>
-          <p class="hero-lead">
-            一个面向年轻消费者的交互式品牌宣传网站初版。以雅诗兰黛为视觉示例，把“产品展示、植物图鉴、成分解码”串成一条可探索的路径。
-          </p>
-          <div class="hero-actions">
-            <a class="button button-primary" href="#explore">探索成分 <span aria-hidden="true">→</span></a>
-            <a class="text-link" href="#product">查看示例配方 <span aria-hidden="true">↓</span></a>
-          </div>
-          <p class="micro-note">当前内容为课程原型数据，品牌资料、配方信息和资料链接待老师确认后替换。</p>
-        </div>
-        <div class="hero-visual" aria-label="植物标本与成分标签示意图">
-          <div class="specimen-card specimen-main">
-            <div class="specimen-top"><span>HERBARIUM / 001</span><span>CLASSROOM SAMPLE</span></div>
-            <div class="specimen-illustration" aria-hidden="true">
-              <svg viewBox="0 0 260 230" role="img" aria-label="植物线稿示意">
-                <path class="stem" d="M126 214 C119 170 124 124 138 72" />
-                <path class="stem" d="M124 176 C101 149 81 127 59 112" />
-                <path class="stem" d="M128 145 C157 124 184 104 201 75" />
-                <path class="leaf" d="M75 118 C57 91 39 90 25 99 C39 121 57 129 75 118Z" />
-                <path class="leaf" d="M99 151 C75 144 57 151 51 166 C72 174 91 169 99 151Z" />
-                <path class="leaf" d="M161 124 C176 99 195 97 211 108 C202 127 183 135 161 124Z" />
-                <path class="leaf" d="M132 91 C132 63 146 43 166 37 C173 59 160 82 132 91Z" />
-                <circle class="flower" cx="168" cy="34" r="17" />
-                <path class="flower-line" d="M168 17 V51 M151 34 H185 M156 22 L180 46 M180 22 L156 46" />
-              </svg>
-            </div>
-            <div class="specimen-label">
-              <span class="latin">Rhodiola rosea</span>
-              <strong>红景天 / 示例植物卡</strong>
-              <span>提取部位：待核验 · 资料编号：S-01</span>
-            </div>
-          </div>
-          <div class="hero-tag tag-one">BOTANICAL<br /><b>03</b> PLANTS</div>
-          <div class="hero-tag tag-two">FORMULA<br /><b>08</b> NOTES</div>
-          <div class="hero-orbit orbit-one" aria-hidden="true"></div>
-          <div class="hero-orbit orbit-two" aria-hidden="true"></div>
-        </div>
-      </section>
-
-      <section class="signal-strip" aria-label="项目概览">
-        <div class="signal-item"><strong>03</strong><span>植物标本卡</span></div>
-        <div class="signal-item"><strong>08</strong><span>成分解码示例</span></div>
-        <div class="signal-item"><strong>01</strong><span>共享详情面板</span></div>
-        <div class="signal-item"><strong>00</strong><span>未经核验的官方宣称</span></div>
-      </section>
-
-      <section id="product" class="content-section section-shell" data-section="product">
-        <div class="section-heading">
-          <p class="eyebrow"><span>02</span> 产品配方 / SAMPLE FORMULA</p>
-          <h2>把一瓶精华，拆成<br /><em>一张可读的配方卡。</em></h2>
-          <p>本版用“雅诗兰黛示例”测试产品宣传模块的叙事方式。以下不是雅诗兰黛真实配方，仅用于演示交互结构，后续应替换为老师确认的产品资料。</p>
-        </div>
-
-        <div class="product-layout">
-          <article class="formula-card">
-            <div class="formula-head">
-              <span class="label-chip">CLASSROOM DEMO</span>
-              <span class="product-code">EL / SAMPLE-01</span>
-            </div>
-            <div class="formula-brand">ESTÉE LAUDER <span>示例</span></div>
-            <h3>植物草本御肤精华液</h3>
-            <p class="formula-subtitle">以品牌精华液为例的成分探索界面</p>
-            <div class="formula-divider"></div>
-            <div class="formula-meta"><span>配方角色</span><strong>保湿 · 质地 · 植物来源</strong></div>
-            <div class="formula-meta"><span>本版状态</span><strong class="pending-text">待老师资料确认</strong></div>
-            <div class="formula-foot"><span>NON-COMMERCIAL STUDY</span><span>↗</span></div>
-          </article>
-
-          <div class="formula-detail">
-            <div class="detail-intro">
-              <span class="section-kicker">配方序位带 / INGREDIENT ORDER</span>
-              <p>点击任意序位，查看这项成分在本课程示例中的角色。排序仅为演示，不代表雅诗兰黛官方成分表。</p>
-            </div>
-            <div id="sequence-band" class="sequence-band" aria-label="示例成分序位"></div>
-            <div class="formula-callout">
-              <span class="callout-icon" aria-hidden="true">i</span>
-              <p><strong>阅读提示：</strong>植物提取物、保湿剂与溶剂是不同类别。这里把它们放在同一条序位带上，是为了帮助用户先学会区分，再进入详情。</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="explore" class="content-section explore-section section-shell" data-section="explore">
-        <div class="section-heading split-heading">
-          <div>
-            <p class="eyebrow"><span>03</span> 植物与成分 / EXPLORE</p>
-            <h2>两条入口，<br /><em>同一份知识。</em></h2>
-          </div>
-          <p>从植物卡进入成分，或从产品序位反向查看植物来源。共享详情面板让信息不再重复，也便于后续把老师确认的资料统一替换。</p>
-        </div>
-
-        <div class="explore-block">
-          <div class="block-heading"><span class="section-kicker">A / 植物图鉴</span><span class="block-note">点击卡片查看植物与提取物关系</span></div>
-          <div id="plant-grid" class="plant-grid"></div>
-        </div>
-
-        <div class="explore-block ingredient-block">
-          <div class="block-heading ingredient-heading">
-            <span class="section-kicker">B / 成分解码器</span>
-            <div class="filter-group" role="group" aria-label="成分筛选">
-              <button class="filter-button is-active" type="button" data-filter="all">全部</button>
-              <button class="filter-button" type="button" data-filter="plant">植物提取物</button>
-              <button class="filter-button" type="button" data-filter="hydration">保湿类</button>
-              <button class="filter-button" type="button" data-filter="other">其他</button>
-            </div>
-          </div>
-          <div id="ingredient-grid" class="ingredient-grid"></div>
-        </div>
-      </section>
-
-      <section id="sources" class="content-section sources-section section-shell" data-section="sources">
-        <div class="section-heading split-heading">
-          <div>
-            <p class="eyebrow"><span>04</span> 方法与来源 / TRACEABILITY</p>
-            <h2>好看的页面，<br /><em>也要经得起核对。</em></h2>
-          </div>
-          <p>这一版先建立“资料可追溯”的位置。拿到老师给出的配方、Logo 和指定资料后，把下面的占位内容逐条替换，并保留访问日期与授权记录。</p>
-        </div>
-        <div class="source-grid">
-          <article class="source-card"><span class="source-index">01</span><h3>先区分信息类型</h3><p>植物来源、化妆品成分角色、研究证据与产品功效宣传不是同一件事。本网站只把可核验的内容放入详情面板。</p><span class="evidence-badge">方法说明</span></article>
-          <article class="source-card"><span class="source-index">02</span><h3>再记录资料出处</h3><p>示例版使用“待老师确认”占位。正式版需要补充老师指定配方、权威资料、访问日期和素材授权信息。</p><span class="evidence-badge">待替换</span></article>
-          <article class="source-card"><span class="source-index">03</span><h3>最后写清作品边界</h3><p>本网站是课程设计作品，不代表雅诗兰黛或草肤荟官方立场，不用于商业宣传，也不作医疗或功效承诺。</p><span class="evidence-badge">合规声明</span></article>
-        </div>
-        <div class="source-table-wrap">
-          <div class="source-table-title"><span class="section-kicker">示例来源表 / SOURCE LOG</span><span>上线前逐条替换</span></div>
-          <div class="source-table" role="table" aria-label="示例来源记录">
-            <div class="source-row source-row-head" role="row"><span>内容对象</span><span>当前状态</span><span>正式版需要</span></div>
-            <div class="source-row" role="row"><span>雅诗兰黛品牌与产品</span><span><b class="status-pill pending">示例</b></span><span>老师确认的品牌资料与使用范围</span></div>
-            <div class="source-row" role="row"><span>植物与成分说明</span><span><b class="status-pill pending">待核验</b></span><span>权威资料、访问日期、证据等级</span></div>
-            <div class="source-row" role="row"><span>图形与插画</span><span><b class="status-pill ready">自制线稿</b></span><span>保留源文件与原创声明</span></div>
-          </div>
-        </div>
-      </section>
-
-      <section id="about" class="content-section about-section section-shell" data-section="about">
-        <div class="about-panel">
-          <div>
-            <p class="eyebrow"><span>05</span> 关于本作品 / ABOUT</p>
-            <h2>这是一个<br /><em>可继续替换的初版。</em></h2>
-          </div>
-          <div class="about-copy">
-            <p>本版本先验证信息架构、视觉方向和核心交互。后续老师提供正式资料后，优先替换产品内容、Logo、配方序位和资料链接，不改变双入口与共享详情面板的骨架。</p>
-            <div class="about-list">
-              <div><span>技术</span><strong>HTML / CSS / JavaScript / JSON 数据对象</strong></div>
-              <div><span>交互</span><strong>锚点导航 · 筛选 · 共享详情面板 · URL 状态</strong></div>
-              <div><span>声明</span><strong>课程作品 · 非官方运营 · 非商业用途</strong></div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <footer class="site-footer section-shell">
-      <div class="footer-brand"><span class="brand-mark" aria-hidden="true">草</span><div><strong>草肤荟 · 成分探索馆</strong><small>CLASSROOM PROTOTYPE / 2026</small></div></div>
-      <p>本页面为课程设计初版，使用雅诗兰黛作为示例品牌。未获品牌商业授权，不代表任何官方信息。</p>
-      <a href="#top" class="back-top">回到顶部 ↑</a>
-    </footer>
-
-    <div id="detail-backdrop" class="detail-backdrop" hidden>
-      <section id="detail-panel" class="detail-panel" role="dialog" aria-modal="true" aria-labelledby="detail-title" tabindex="-1">
-        <button id="detail-close" class="detail-close" type="button" aria-label="关闭详情">×</button>
-        <div class="detail-panel-top"><span id="detail-kicker" class="section-kicker">COMPONENT NOTE</span><span id="detail-status" class="evidence-badge">示例资料</span></div>
-        <h2 id="detail-title">成分详情</h2>
-        <p id="detail-subtitle" class="detail-subtitle"></p>
-        <div class="detail-grid">
-          <div><span>配方角色</span><strong id="detail-role"></strong></div>
-          <div><span>来源类型</span><strong id="detail-origin"></strong></div>
-          <div><span>配方序位</span><strong id="detail-position"></strong></div>
-          <div><span>关联植物</span><strong id="detail-plant"></strong></div>
-        </div>
-        <div class="detail-section"><span class="detail-label">一句话解码</span><p id="detail-plain"></p></div>
-        <details class="detail-evidence"><summary>展开资料边界与证据说明</summary><p id="detail-evidence-copy"></p></details>
-        <div class="detail-related"><span class="detail-label">下一步</span><button id="detail-related-button" class="button button-secondary" type="button">返回探索区 →</button></div>
-      </section>
+      <a class="header-cta" href="#ingredients">开始探索 <span aria-hidden="true">↗</span></a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="展开导航"><span></span><span></span></button>
     </div>
+  </header>
+  <main id="main">
+    <section class="hero wrap" id="top" data-section="top">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="red-dot"></span> 植物有名字，成分有来处</p>
+        <h1>从一株植物，<br>读懂<em>一瓶精华。</em></h1>
+        <p class="hero-lead">跟随三种草本，走进草肤荟的配方。<br>把陌生的成分名，读成清楚的日常知识。</p>
+        <div class="hero-actions"><a class="button button-primary" href="#plants">翻开植物图鉴 <span aria-hidden="true">↗</span></a><a class="text-link" href="#product">先认识这瓶精华 <span aria-hidden="true">↓</span></a></div>
+        <div class="hero-footnote"><span class="note-number">01 /</span><p>以植物为本，立自研之根，守肌肤之美。<small>引自品牌包装资料</small></p></div>
+      </div>
+      <figure class="hero-visual">
+        <a class="preview-entry-overlay" href="3d/index.html" aria-label="打开精华液交互式3D预览"><span class="preview-badge">↗ 进入 3D 影棚</span></a>
+        <img src="assets/images/serum/front.webp" alt="草肤荟50毫升植物草本御肤精华液实物，琥珀色瓶身置于绿色礼盒上" width="900" height="995" fetchpriority="high">
+        <span class="photo-stamp" aria-hidden="true">植<br>物<br>为<br>本</span>
+        <figcaption><span>BOTANICAL EXTRACTS<br><b>植物草本御肤精华液</b></span><span class="photo-volume">50 <small>mL</small></span></figcaption>
+      </figure>
+      <div class="hero-bottom"><span class="edition">THE BOTANICAL EDIT / 2026</span><a href="#product">向下探索 <span aria-hidden="true">↓</span></a><span class="course-label">课程设计作品 · 非品牌官方站点</span></div>
+    </section>
 
-    <noscript>
-      <div class="noscript-note">本网站的筛选和详情面板需要启用 JavaScript；核心介绍与资料说明仍可直接阅读。</div>
-    </noscript>
-    <script src="data.js"></script>
-    <script src="app.js"></script>
-  </body>
+    <section class="intro-strip" aria-label="探索内容概览"><div class="wrap intro-inner"><p>一份配方，<br>三种读法。</p><div><strong>03</strong><span>植物图鉴<small>从植物认识提取物</small></span></div><div><strong>08</strong><span>重点成分<small>把专业名称说清楚</small></span></div><div><strong>16<small>+17</small></strong><span>配方记录<small>保留名称与原始顺序</small></span></div></div></section>
+
+    <section class="section wrap" id="product" data-section="product">
+      <div class="section-head"><div><p class="eyebrow">01 / THE ESSENCE</p><h2>先认识，<em>这一瓶。</em></h2></div><p class="section-intro">一款精华，两种规格。<br>先看实物，再打开它的配方。</p></div>
+      <div class="product-layout">
+        <div class="product-gallery">
+          <figure class="product-main"><img id="product-image" src="assets/images/serum/sizes.webp" alt="草肤荟50毫升礼盒装与10毫升便携装规格对比" width="1000" height="1000" loading="lazy"><figcaption id="product-caption">50 mL 礼盒装 / 10 mL 便携装</figcaption></figure>
+        </div>
+        <div class="product-copy"><span class="small-label">草肤荟 / CAOFUHUI</span><h3>植物草本<br>御肤精华液</h3><p class="english-name">Botanical Extracts Skincare Essence</p><div class="size-options"><span><b>50</b> mL · 礼盒装</span><span><b>10</b> mL · 便携装</span></div><p class="product-description">琥珀色瓶身，植物绿包装。除了外观，瓶身上的名称、规格和使用说明，也是认识产品的起点。</p>
+          <div class="usage"><p class="small-label">使用方式 <span>根据品牌信与瓶身说明整理</span></p><ol><li><b>01</b><div><strong>按压取用</strong><p>拔开瓶盖，按压泵头取适量精华。</p></div></li><li><b>02</b><div><strong>涂抹，静候吸收</strong><p>均匀涂抹于面部；品牌信建议无需拍打。</p></div></li><li><b>03</b><div><strong>按说明使用</strong><p>瓶身建议早晚各一次，具体以实物包装为准。</p></div></li></ol></div>
+          <a class="text-link" href="#formula">打开完整配方记录 <span aria-hidden="true">↓</span></a>
+        </div>
+      </div>
+      <aside class="question-bridge"><div class="bridge-index">换个角度<br><span>ASK WHY</span></div><div class="bridge-copy"><p>品牌信提到「没有添加防腐剂、香精与增稠剂」。</p><h3>那，配方如何保持稳定？</h3><p class="bridge-note">从第 13、14 项寻找线索，也看看成分表能告诉我们什么。</p></div><a class="circle-link" href="#note-hexanediol" data-ingredient-id="hexanediol" aria-label="解读1,2-己二醇与配方稳定性"><span aria-hidden="true">↗</span></a></aside>
+    </section>
+
+    <section class="plant-section" id="plants" data-section="plants"><div class="wrap section">
+      <div class="section-head"><div><p class="eyebrow">02 / THE HERBARIUM</p><h2>在配方里，<em>遇见植物。</em></h2></div><p class="section-intro">三个植物名字，三条探索线索。<br>轻点插画，看它与配方的联系。</p></div>
+      <div class="plant-grid"><!-- GENERATED:plants -->
+<a class="plant-card" href="#note-bidens-extract" data-plant-id="bidens" aria-label="探索三叶鬼针草与配方的关系"><div class="plant-top"><span>BOTANICAL / 01</span><span>配方 03</span></div><div class="plant-art"><img src="assets/images/plants/bidens.webp" alt="草肤荟公众号发布的三叶鬼针草品牌插画" width="640" height="640" loading="lazy"></div><div class="plant-copy"><em>Bidens pilosa</em><h3>三叶鬼针草</h3><p>插画标注为「鬼针草」，配方记录使用「三叶鬼针草提取物」。从植物名，找到成分表里的对应项。</p></div><div class="plant-foot"><span>三叶鬼针草提取物</span><b>查看成分 ↗</b></div></a>
+<a class="plant-card" href="#note-acmella-extract" data-plant-id="acmella" aria-label="探索千日菊与配方的关系"><div class="plant-top"><span>BOTANICAL / 02</span><span>配方 05</span></div><div class="plant-art"><img src="assets/images/plants/acmella.webp" alt="草肤荟公众号发布的千日菊品牌插画" width="640" height="640" loading="lazy"></div><div class="plant-copy"><em>Acmella oleracea</em><h3>千日菊</h3><p>一朵黄色小花，也有一个专业的配方名称。点击卡片，看千日菊如何出现在这瓶精华的成分表中。</p></div><div class="plant-foot"><span>千日菊提取物</span><b>查看成分 ↗</b></div></a>
+<a class="plant-card" href="#note-rhodiola-extract" data-plant-id="rhodiola" aria-label="探索红景天与配方的关系"><div class="plant-top"><span>BOTANICAL / 03</span><span>配方 09</span></div><div class="plant-art"><img src="assets/images/plants/rhodiola.webp" alt="草肤荟公众号发布的红景天品牌插画" width="640" height="640" loading="lazy"></div><div class="plant-copy"><em>Rhodiola rosea</em><h3>红景天</h3><p>包装插画之外，还有值得读懂的名字。红景天提取物，出现在这份配方记录的第 9 项。</p></div><div class="plant-foot"><span>红景天提取物</span><b>查看成分 ↗</b></div></a>
+<!-- /GENERATED:plants --></div>
+      <p class="section-caption"><span>ILLUSTRATIONS FROM BRAND MATERIALS</span><span>插画为草肤荟公众号发布的品牌视觉素材，用于关联名称，不作为植物鉴定依据。</span></p>
+    </div></section>
+
+    <section class="section wrap" id="ingredients" data-section="ingredients">
+      <div class="section-head"><div><p class="eyebrow">03 / INGREDIENT NOTES</p><h2>名字很专业，<br><em>解释可以很简单。</em></h2></div><p class="section-intro">从熟悉的泛醇，到名字很长的依克多因。<br>选一项，读懂名称、角色与出处。</p></div>
+      <div class="decoder-toolbar"><div class="filters" role="group" aria-label="筛选重点成分"><button type="button" class="filter-button is-active" data-filter="all" aria-pressed="true">全部 <span>08</span></button><button type="button" class="filter-button" data-filter="plant" aria-pressed="false">植物提取物</button><button type="button" class="filter-button" data-filter="hydration" aria-pressed="false">保湿与调理</button><button type="button" class="filter-button" data-filter="other" aria-pressed="false">其他角色</button></div><p id="filter-count" role="status" aria-live="polite">8 项重点解码</p></div>
+      <div class="ingredient-grid"><!-- GENERATED:ingredients -->
+<details class="ingredient-card" id="note-butylene-glycol" data-type="hydration"><summary data-ingredient-id="butylene-glycol"><span class="ingredient-index">02</span><span class="ingredient-copy"><span class="ingredient-alias">保湿剂 · 溶剂</span><strong>丁二醇</strong><em>Butylene Glycol</em></span><span class="ingredient-arrow" aria-hidden="true">↗</span></summary><div class="static-note"><p>读到「醇」字，不必马上联想到酒精。丁二醇是另一种物质，常在化妆品中承担保湿和溶剂角色。</p><p>这里解释的是成分的一般用途。不能从名称判断本配方中它的具体浓度、来源工艺或最终使用效果。</p><a href="https://cosmileeurope.eu/inci/detail/2015/butylene-glycol/" target="_blank" rel="noopener">S04 · COSMILE Europe：Butylene Glycol ↗</a></div></details>
+<details class="ingredient-card" id="note-bidens-extract" data-type="plant"><summary data-ingredient-id="bidens-extract"><span class="ingredient-index">03</span><span class="ingredient-copy"><span class="ingredient-alias">植物提取物</span><strong>三叶鬼针草提取物</strong><em>Bidens Pilosa Extract</em></span><span class="ingredient-arrow" aria-hidden="true">↗</span></summary><div class="static-note"><p>植物的名字与成分的名字，只差了「提取物」三个字。它说明这项原料与三叶鬼针草有关，并不表示把整株植物直接放进瓶子。</p><p>中文名称、拉丁名和序位来自草肤荟公众号发布的配方记录。资料没有给出提取部位、提取工艺或浓度，本页不作补充推断。</p><a href="assets/images/serum/package.webp" target="_blank" rel="noopener">S01 · 草肤荟公众号发布的配方记录与包装照片 ↗</a></div></details>
+<details class="ingredient-card" id="note-ectoin" data-type="hydration"><summary data-ingredient-id="ectoin"><span class="ingredient-index">04</span><span class="ingredient-copy"><span class="ingredient-alias">依克多因 · 皮肤调理</span><strong>四氢甲基嘧啶羧酸</strong><em>Ectoin</em></span><span class="ingredient-arrow" aria-hidden="true">↗</span></summary><div class="static-note"><p>长名字，也可以有熟悉的叫法。四氢甲基嘧啶羧酸常被称为「依克多因」，英文名称是 Ectoin。</p><p>COSMILE Europe 将 Ectoin 归为皮肤调理成分。这是成分分类，不是这瓶精华的修护或人群适用性检测结果。</p><a href="https://cosmileeurope.eu/inci/detail/5191/ectoin/" target="_blank" rel="noopener">S05 · COSMILE Europe：Ectoin ↗</a></div></details>
+<details class="ingredient-card" id="note-acmella-extract" data-type="plant"><summary data-ingredient-id="acmella-extract"><span class="ingredient-index">05</span><span class="ingredient-copy"><span class="ingredient-alias">植物提取物</span><strong>千日菊提取物</strong><em>Acmella Oleracea Extract</em></span><span class="ingredient-arrow" aria-hidden="true">↗</span></summary><div class="static-note"><p>从插画里的千日菊，到成分表里的 Acmella Oleracea Extract，中文名与拉丁名构成了一组可以相互核对的线索。</p><p>配方记录确认了名称和第 5 项的位置。插画为草肤荟公众号发布的品牌视觉素材，并非植物鉴定图；不据此推导提取部位或产品功效。</p><a href="assets/images/serum/package.webp" target="_blank" rel="noopener">S01 · 草肤荟公众号发布的配方记录与包装照片 ↗</a></div></details>
+<details class="ingredient-card" id="note-panthenol" data-type="hydration"><summary data-ingredient-id="panthenol"><span class="ingredient-index">08</span><span class="ingredient-copy"><span class="ingredient-alias">维生素 B5 前体</span><strong>泛醇</strong><em>Panthenol</em></span><span class="ingredient-arrow" aria-hidden="true">↗</span></summary><div class="static-note"><p>常听到的「B5」与它有关。泛醇属于维生素 B5 的前体，常被称作「维生素原 B5」，不宜直接把两者画等号。</p><p>名称关系和分类参考 COSMILE Europe。该资料讲的是原料，不提供草肤荟产品的人体功效或安全性结论。</p><a href="https://cosmileeurope.eu/inci/detail/10243/panthenol/" target="_blank" rel="noopener">S06 · COSMILE Europe：Panthenol ↗</a></div></details>
+<details class="ingredient-card" id="note-rhodiola-extract" data-type="plant"><summary data-ingredient-id="rhodiola-extract"><span class="ingredient-index">09</span><span class="ingredient-copy"><span class="ingredient-alias">植物提取物</span><strong>红景天提取物</strong><em>Rhodiola Rosea Extract</em></span><span class="ingredient-arrow" aria-hidden="true">↗</span></summary><div class="static-note"><p>红景天是植物名，「红景天提取物」是这里的配方名称。把两者对应起来，是读懂草本成分表的第一步。</p><p>第 9 项表示本份记录中的列示位置，不是含量百分比。未提供提取部位、工艺与浓度；不把植物相关研究当作本产品效果。</p><a href="assets/images/serum/package.webp" target="_blank" rel="noopener">S01 · 草肤荟公众号发布的配方记录与包装照片 ↗</a></div></details>
+<details class="ingredient-card" id="note-sodium-hyaluronate" data-type="hydration"><summary data-ingredient-id="sodium-hyaluronate"><span class="ingredient-index">12</span><span class="ingredient-copy"><span class="ingredient-alias">透明质酸的钠盐</span><strong>透明质酸钠</strong><em>Sodium Hyaluronate</em></span><span class="ingredient-arrow" aria-hidden="true">↗</span></summary><div class="static-note"><p>这是透明质酸的钠盐。理解「钠」这个后缀，能把常见的护肤词汇和成分表上的正式名称联系起来。</p><p>COSMILE Europe 收录了它的保湿和皮肤调理功能。最终产品的使用感受和效果还受到整体配方等因素影响。</p><a href="https://cosmileeurope.eu/inci/detail/14809/sodium-hyaluronate/" target="_blank" rel="noopener">S07 · COSMILE Europe：Sodium Hyaluronate ↗</a></div></details>
+<details class="ingredient-card" id="note-hexanediol" data-type="other"><summary data-ingredient-id="hexanediol"><span class="ingredient-index">13</span><span class="ingredient-copy"><span class="ingredient-alias">溶剂 · 皮肤调理</span><strong>1,2-己二醇</strong><em>1,2-Hexanediol</em></span><span class="ingredient-arrow" aria-hidden="true">↗</span></summary><div class="static-note"><p>一项原料可以有不止一个配方角色。1,2-己二醇可用作溶剂和皮肤调理成分；了解一般用途，比单看名字判断好坏更有帮助。</p><p>COSMILE Europe 提供一般功能分类。配方第 14 项还列有对羟基苯乙酮，但仅凭这两个名称，不能确认本产品的完整防腐体系、稳定性或安全性。</p><a href="https://cosmileeurope.eu/inci/detail/5/1-2-hexanediol/" target="_blank" rel="noopener">S08 · COSMILE Europe：1,2-Hexanediol ↗</a></div></details>
+<!-- /GENERATED:ingredients --></div>
+      <p class="reading-note">序号对应下方配方记录的位置；成分的一般用途不等于这款产品的实测效果。</p>
+      <div class="formula-archive" id="formula"><div class="formula-title"><div><p class="eyebrow">THE FORMULA / 配方原貌</p><h3>每一个名字，都有位置。</h3></div><span class="formula-key"><i></i> 本站重点解码成分</span></div><p class="formula-tip">沿用草肤荟公众号发布配方记录的 16 项顺序。点击名称查看详情；序位不能换算为浓度。</p><div class="sequence-band" aria-label="16项配方成分顺序"><!-- GENERATED:sequence -->
+<a class="sequence-node" id="formula-entry-water" href="#formula" data-ingredient-id="water"><span class="sequence-number">01</span><span class="sequence-name">水</span><span class="sequence-mark" aria-hidden="true">·</span></a>
+<a class="sequence-node is-featured" id="formula-entry-butylene-glycol" href="#note-butylene-glycol" data-ingredient-id="butylene-glycol"><span class="sequence-number">02</span><span class="sequence-name">丁二醇</span><span class="sequence-mark" aria-hidden="true">↗</span></a>
+<a class="sequence-node is-featured" id="formula-entry-bidens-extract" href="#note-bidens-extract" data-ingredient-id="bidens-extract"><span class="sequence-number">03</span><span class="sequence-name">三叶鬼针草提取物</span><span class="sequence-mark" aria-hidden="true">↗</span></a>
+<a class="sequence-node is-featured" id="formula-entry-ectoin" href="#note-ectoin" data-ingredient-id="ectoin"><span class="sequence-number">04</span><span class="sequence-name">四氢甲基嘧啶羧酸</span><span class="sequence-mark" aria-hidden="true">↗</span></a>
+<a class="sequence-node is-featured" id="formula-entry-acmella-extract" href="#note-acmella-extract" data-ingredient-id="acmella-extract"><span class="sequence-number">05</span><span class="sequence-name">千日菊提取物</span><span class="sequence-mark" aria-hidden="true">↗</span></a>
+<a class="sequence-node" id="formula-entry-ergothioneine" href="#formula" data-ingredient-id="ergothioneine"><span class="sequence-number">06</span><span class="sequence-name">麦角硫因</span><span class="sequence-mark" aria-hidden="true">·</span></a>
+<a class="sequence-node" id="formula-entry-alpha-arbutin" href="#formula" data-ingredient-id="alpha-arbutin"><span class="sequence-number">07</span><span class="sequence-name">α-熊果苷</span><span class="sequence-mark" aria-hidden="true">·</span></a>
+<a class="sequence-node is-featured" id="formula-entry-panthenol" href="#note-panthenol" data-ingredient-id="panthenol"><span class="sequence-number">08</span><span class="sequence-name">泛醇</span><span class="sequence-mark" aria-hidden="true">↗</span></a>
+<a class="sequence-node is-featured" id="formula-entry-rhodiola-extract" href="#note-rhodiola-extract" data-ingredient-id="rhodiola-extract"><span class="sequence-number">09</span><span class="sequence-name">红景天提取物</span><span class="sequence-mark" aria-hidden="true">↗</span></a>
+<a class="sequence-node" id="formula-entry-matsutake" href="#formula" data-ingredient-id="matsutake"><span class="sequence-number">10</span><span class="sequence-name">松口蘑提取物</span><span class="sequence-mark" aria-hidden="true">·</span></a>
+<a class="sequence-node" id="formula-entry-white-truffle" href="#formula" data-ingredient-id="white-truffle"><span class="sequence-number">11</span><span class="sequence-name">白松露菌提取物</span><span class="sequence-mark" aria-hidden="true">·</span></a>
+<a class="sequence-node is-featured" id="formula-entry-sodium-hyaluronate" href="#note-sodium-hyaluronate" data-ingredient-id="sodium-hyaluronate"><span class="sequence-number">12</span><span class="sequence-name">透明质酸钠</span><span class="sequence-mark" aria-hidden="true">↗</span></a>
+<a class="sequence-node is-featured" id="formula-entry-hexanediol" href="#note-hexanediol" data-ingredient-id="hexanediol"><span class="sequence-number">13</span><span class="sequence-name">1,2-己二醇</span><span class="sequence-mark" aria-hidden="true">↗</span></a>
+<a class="sequence-node" id="formula-entry-hydroxyacetophenone" href="#formula" data-ingredient-id="hydroxyacetophenone"><span class="sequence-number">14</span><span class="sequence-name">对羟基苯乙酮</span><span class="sequence-mark" aria-hidden="true">·</span></a>
+<a class="sequence-node" id="formula-entry-dipotassium-glycyrrhizate" href="#formula" data-ingredient-id="dipotassium-glycyrrhizate"><span class="sequence-number">15</span><span class="sequence-name">甘草酸二钾</span><span class="sequence-mark" aria-hidden="true">·</span></a>
+<a class="sequence-node" id="formula-entry-tremella" href="#formula" data-ingredient-id="tremella"><span class="sequence-number">16</span><span class="sequence-name">银耳提取物</span><span class="sequence-mark" aria-hidden="true">·</span></a>
+<!-- /GENERATED:sequence --></div>
+        <details class="full-formula"><summary><span>完整成分记录 <small>16 项 + 17 项其他微量成分</small></span><span class="plus" aria-hidden="true">+</span></summary><div class="full-formula-content"><h4>成分</h4><p><!-- GENERATED:main-formula -->
+水、丁二醇、三叶鬼针草（BIDENS PILOSA）提取物、四氢甲基嘧啶羧酸、千日菊（ACMELLA OLERACEA）提取物、麦角硫因、α-熊果苷、泛醇、红景天（RHODIOLA ROSEA）提取物、松口蘑（TRICHOLOMA MATSUTAKE）提取物、白松露菌（TUBER MAGNATUM）提取物、透明质酸钠、1,2-己二醇、对羟基苯乙酮、甘草酸二钾、银耳（TREMELLA FUCIFORMIS）提取物。
+<!-- /GENERATED:main-formula --></p><h4>其他微量成分</h4><p><!-- GENERATED:trace-formula -->
+黄芩（SCUTELLARIA BAICALENSIS）根提取物、黑孢块菌（TUBER MELANOSPORUM）提取物、麦冬（OPHIOPOGON JAPONICUS）根提取物、薰衣草（LAVANDULA ANGUSTIFOLIA）花提取物、姜黄（CURCUMA LONGA）根提取物、精氨酸、葡萄柚（CITRUS PARADISI）果提取物、柑橘（CITRUS RETICULATA）果提取物、绣球菌（SPARASSIS CRISPA）提取物、冬虫夏草（CORDYCEPS SINENSIS）提取物、矢车菊（CENTAUREA CYANUS）花提取物、栀子（GARDENIA FLORIDA）提取物、桂花（OSMANTHUS FRAGRANS）花提取物、拟石花菜（GELIDIELLA ACEROSA）提取物、玫瑰（ROSA RUGOSA）花提取物、檀香（SANTALUM ALBUM）木提取物、尿囊素。
+<!-- /GENERATED:trace-formula --></p><p class="formula-source">S01 · 根据现有配方资料整理，保留成分分组；产品信息以实物标签为准。</p><a class="text-link" href="assets/images/serum/package.webp" target="_blank" rel="noopener">对照包装照片 <span aria-hidden="true">↗</span></a></div></details>
+      </div>
+    </section>
+
+    <section class="sources-section" id="sources" data-section="sources"><div class="section wrap"><div class="section-head"><div><p class="eyebrow">04 / SOURCES & CONTEXT</p><h2>好奇，也<em>有据可循。</em></h2></div><p class="section-intro">把品牌资料和成分知识分别注明。<br>知道信息从哪里来，也知道它说明到哪里。</p></div>
+      <div class="source-layout"><div class="source-statement"><span class="source-quote" aria-hidden="true">“</span><h3>先读名字，<br>再看角色，<br>最后找出处。</h3><p>本馆介绍配方信息与成分的一般用途。未提供本产品的功效试验或稳定性测试数据，不能据此判断个人使用效果。</p><span class="source-date">资料整理 / 2026.10.29</span></div>
+      <div class="source-list"><details open><summary><span><b>S01—03</b> 产品与图片资料</span><span class="plus" aria-hidden="true">+</span></summary><div class="source-details"><p><b>S01 · 配方与包装</b>　草肤荟公众号于 2026-10-28 发布的产品资料、精华液正背面与礼盒照片。成分分组照录，规格来自图片。</p><p><b>S02 · 品牌信</b>　《致草肤荟用户的一封信》。仅摘取产品操作说明及有归因的品牌自述。</p><p><b>S03 · 素材使用说明</b>　草肤荟公众号发布的素材使用意见说明照片可以使用及裁剪；本项目按课程展示用途使用。植物图取自草肤荟公众号发布的三张插画。</p><a href="assets/images/serum/package.webp" target="_blank" rel="noopener">查看包装照片 ↗</a></div></details>
+        <details><summary><span><b>S04—08</b> 成分解码参考</span><span class="plus" aria-hidden="true">+</span></summary><div class="source-details"><p>一般功能与名称对照参考 COSMILE Europe 成分数据库。数据库条目不代表对本产品的审批、检测或功效认可。查阅日期：2026-10-29。</p><ul><!-- GENERATED:sources -->
+<li><a href="https://cosmileeurope.eu/inci/detail/2015/butylene-glycol/" target="_blank" rel="noopener">S04 · COSMILE Europe：Butylene Glycol ↗</a></li>
+<li><a href="https://cosmileeurope.eu/inci/detail/5191/ectoin/" target="_blank" rel="noopener">S05 · COSMILE Europe：Ectoin ↗</a></li>
+<li><a href="https://cosmileeurope.eu/inci/detail/10243/panthenol/" target="_blank" rel="noopener">S06 · COSMILE Europe：Panthenol ↗</a></li>
+<li><a href="https://cosmileeurope.eu/inci/detail/14809/sodium-hyaluronate/" target="_blank" rel="noopener">S07 · COSMILE Europe：Sodium Hyaluronate ↗</a></li>
+<li><a href="https://cosmileeurope.eu/inci/detail/5/1-2-hexanediol/" target="_blank" rel="noopener">S08 · COSMILE Europe：1,2-Hexanediol ↗</a></li>
+<!-- /GENERATED:sources --></ul></div></details>
+        <details><summary><span><b>ABOUT</b> 关于这个探索馆</span><span class="plus" aria-hidden="true">+</span></summary><div class="source-details"><p>“草肤荟·成分探索馆”是课程设计作品，以“植物 → 成分”和“成分 → 配方”两条路径组织信息。采用文字标排版，非品牌官方 Logo。</p><p>这里通过植物图鉴、成分解码和 3D 产品展示，连接植物名称与配方信息。产品照片与植物插画来自课程提供的品牌素材。</p><p>本项目非品牌官方运营网站，仅作课程展示，不提供购买或个性化护肤建议。</p></div></details></div>
+      </div>
+    </div></section>
+    <section class="closing wrap"><span class="closing-seal" aria-hidden="true">草本<br>有序</span><p>每一次读懂，<em>都从好奇开始。</em></p><a class="text-link" href="#plants">再去认识一株植物 <span aria-hidden="true">↗</span></a></section>
+  </main>
+  <footer class="site-footer"><div class="wrap footer-inner"><a class="footer-brand" href="#top">草肤荟 <span>成分探索馆</span></a><p>课程设计作品 · 非品牌官方运营 · 非商业用途</p><a href="#top">回到顶部 ↑</a></div></footer>
+  <dialog class="detail-dialog" id="detail-dialog" aria-labelledby="detail-title"><div class="drawer-handle" aria-hidden="true"></div><button class="detail-close" type="button" aria-label="关闭成分详情" autofocus>×</button><div class="detail-scroll"><p class="eyebrow" id="detail-kicker"></p><h2 id="detail-title"></h2><p id="detail-english" class="detail-english"></p><img id="detail-image" class="detail-image" src="assets/images/plants/bidens.webp" alt="" width="210" height="210" hidden><div class="detail-meta"><div><span>配方序位</span><strong id="detail-position"></strong></div><div><span>一般角色 / 信息类型</span><strong id="detail-role"></strong></div></div><h3 class="detail-label">一句话，读懂它</h3><p id="detail-plain" class="detail-plain"></p><details class="evidence-details"><summary>资料说明与解读边界 <span aria-hidden="true">+</span></summary><p id="detail-evidence"></p><a id="detail-source" target="_blank" rel="noopener"></a></details><div class="detail-actions"><button type="button" class="button button-primary" id="detail-formula">在配方中找到它 <span aria-hidden="true">↓</span></button><button type="button" class="text-link" id="detail-plant">查看关联植物 ↗</button></div></div></dialog>
+  <noscript><p class="noscript-note">当前未启用 JavaScript。重点成分卡仍可展开阅读，产品图与完整配方均可查看。</p></noscript>
+</body>
 </html>
